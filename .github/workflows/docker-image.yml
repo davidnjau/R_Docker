@@ -14,8 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Push to docker hub
-      run: docker build -t davidnjau21/r_docker .
-           echo "Sc281-6736/2014" | docker login -u "davidnjau21" --password-stdin
-           docker push davidnjau21/r_docker:latest
-           docker logout
+    - name: Build & push Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: davidnjau21/r_docker_image
+        tags: latest
+        registry: docker.io
+        dockerfile: Dockerfile
+        username: davidnjau21
+        password: Sc281-6736/2014
