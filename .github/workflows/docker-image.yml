@@ -14,5 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Push to docker hub
+      run: docker build -t davidnjau21/r_docker .
+           echo "Sc281-6736/2014" | docker login -u "davidnjau21" --password-stdin
+           docker push davidnjau21/r_docker:latest
+           docker logout
